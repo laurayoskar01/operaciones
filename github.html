@@ -1,38 +1,56 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <html lang="es">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Suma</title>
-    <script src="github.js"></script>
     <link rel="stylesheet" href="github.css">
-    <title>Calculadora de Suma</title>
 </head>
 <body>
     <h1>Calculadora de Suma</h1>
-    <p>Ingresa dos números y presiona el botón para calcular su suma:</p>
+    <p>Ingresa dos números y selecciona una operación:</p>
 
     <input type="text" id="numero1" placeholder="Número 1">
     <input type="text" id="numero2" placeholder="Número 2">
-    <button onclick="sumar()">Calcular Suma</button>
+
+    <div>
+        <button onclick="seleccionarOperacion('suma')">Suma</button>
+        <button onclick="seleccionarOperacion('resta')">Resta</button>
+        <button onclick="seleccionarOperacion('multiplicacion')">Multiplicación</button>
+        <button onclick="seleccionarOperacion('division')">División</button>
+    </div>
 
     <p>Resultado: <span id="resultado"></span></p>
 
     <script>
-        function sumar() {
-            
+        function seleccionarOperacion(operacion) {
             var num1 = parseFloat(document.getElementById("numero1").value);
             var num2 = parseFloat(document.getElementById("numero2").value);
+            var resultado = 0;
 
-          
-            if (!isNaN(num1) && !isNaN(num2)) {
-                var suma = num1 + num2;
-                document.getElementById("resultado").innerHTML = suma;
-            } else {
-                document.getElementById("resultado").innerHTML = "Por favor, ingresa números válidos.";
+            switch (operacion) {
+                case 'suma':
+                    resultado = num1 + num2;
+                    break;
+                case 'resta':
+                    resultado = num1 - num2;
+                    break;
+                case 'multiplicacion':
+                    resultado = num1 * num2;
+                    break;
+                case 'division':
+                    if (num2 !== 0) {
+                        resultado = num1 / num2;
+                    } else {
+                        alert("No es posible dividir por 0.");
+                    }
+                    break;
+                default:
+                    alert("Operación no válida");
+                    break;
             }
+
+            document.getElementById("resultado").textContent = "Resultado: " + resultado;
         }
     </script>
 </body>
