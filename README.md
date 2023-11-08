@@ -1,2 +1,1 @@
-# operaciones
-taller github
+#Operaciones matematicas 
